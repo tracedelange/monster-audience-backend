@@ -13,8 +13,9 @@ trixy = User.create(username: 'triXy')
 pickleMan = User.create(username: 'PickleMan')
 
 
-newMovie = Subject.create(name: 'new movie', description: 'Avengers endgame in theaters')
-dinner = Subject.create(name: 'Pizza at dominos', description: 'Friday night dinner at dominos')
+newMovie = Subject.create(user_id: dan.id, name: 'new movie', description: 'Avengers endgame in theaters', public: true)
+dinner = Subject.create(user_id: trace.id, name: 'Pizza at dominos', description: 'Friday night dinner at dominos', public: true)
+biking = Subject.create(user_id: trixy.id, name: 'Pizza at dominos', description: 'Friday night dinner at dominos', public: false)
 
 
 Review.create(user_id: trace.id, subject_id: dinner.id, content: 'Honestly dominos kinda hit it out of the park this time.', rating: 8)
