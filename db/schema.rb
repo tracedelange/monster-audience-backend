@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_165456) do
+ActiveRecord::Schema.define(version: 2021_10_07_195729) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "review_id"
     t.string "content"
     t.integer "likes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_165456) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar_link"
   end
 
 end

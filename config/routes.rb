@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/subjects/mine', to: 'subjects#mine'
   get '/reviews/mine', to: 'reviews#mine'
+
+  resources :friendships, only: [:index, :create, :destroy]
   
   resources :subjects do
     resources :reviews, only: [:show]
