@@ -26,10 +26,6 @@ class FriendshipsController < ApplicationController
         params.permit(:id, :friend_id)
     end
 
-    def set_current_user
-        @user = current_user
-    end
-
 end
 
 # friendships GET    /friendships(.:format)                                                                           friendships#index

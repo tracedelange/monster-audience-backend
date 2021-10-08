@@ -79,6 +79,8 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -158,7 +160,8 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  x86_64-darwin-19
+  ruby
+  x86_64-darwin
 
 DEPENDENCIES
   active_model_serializers
@@ -166,6 +169,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   dotenv-rails
+  faker
   jwt
   listen (~> 3.3)
   puma (~> 5.0)

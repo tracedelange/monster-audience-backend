@@ -69,10 +69,6 @@ class SubjectsController < ApplicationController
         params.permit(:name, :description, :city, :state, :id, :public)
     end
 
-    def set_current_user
-        @user = current_user
-    end
-    
 end
 
 # subjects_mine GET    /subjects/mine(.:format)                                                            subjects#mine

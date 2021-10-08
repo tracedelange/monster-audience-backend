@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/me', to: 'users#me'
 
 
+
+  get '/feed', to: 'feeds#index'
   get '/subjects/mine', to: 'subjects#mine'
   get '/reviews/mine', to: 'reviews#mine'
 

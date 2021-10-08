@@ -59,9 +59,6 @@ class ReviewsController < ApplicationController
         params.permit(:user_id, :subject_id, :content, :rating)
     end
 
-    def set_current_user
-        @user = current_user
-    end
 
 end
 
