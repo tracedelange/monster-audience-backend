@@ -79,6 +79,6 @@ for n in 0..100
     user = User.all.sample
     subject = Subject.all.sample
 
-    user.reviews.create(subject_id: subject.id, rating: rand(11), content: Faker::Marketing.buzzwords)
+    user.reviews.create(subject_id: subject.id, rating: rand(11), content: Faker::Commerce.product_name)
 
 end
