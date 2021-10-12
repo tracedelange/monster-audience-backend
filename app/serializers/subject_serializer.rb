@@ -1,5 +1,5 @@
 class SubjectSerializer < ActiveModel::Serializer
-  attributes :id, :name, :user_id, :description, :city, :state, :public, :username, :avg_rating, :created_at
+  attributes :id, :name, :user_id, :description, :city, :state, :public, :username, :avg_rating, :created_at, :updated_at
 
   has_many :reviews
 

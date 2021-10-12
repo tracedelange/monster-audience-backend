@@ -14,20 +14,25 @@ class FeedsController < ApplicationController
             end
         end
 
+
         render json: subjects
 
     end
 
-        # render json: {feed: FeedSerializer.new(current_user)}
-    
-        # follwing = @user.friends
-        # posts = []
-        # follwing.each do |user|
-        #     reviews = user.reviews
-        #     posts.append(reviews)
-        # end
+    # private
 
-        # render json: posts
+
+    # def sort_subjects(subjects)
+    #     subjects.sort_by do |subject|
+           
+    #         if subject["reviews"]
+    #             subject['reviews'][0]['created_at']
+
+    #         else
+    #             subject['created_at']
+    #         end
+    #     end
+    # end
 
 
 end
