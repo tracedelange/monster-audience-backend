@@ -15,24 +15,16 @@ class FeedsController < ApplicationController
         end
 
 
-        render json: subjects
+        render json: sorted(subjects)
 
     end
 
     # private
 
 
-    # def sort_subjects(subjects)
-    #     subjects.sort_by do |subject|
-           
-    #         if subject["reviews"]
-    #             subject['reviews'][0]['created_at']
-
-    #         else
-    #             subject['created_at']
-    #         end
-    #     end
-    # end
+    def sorted(subjects)
+        subjects.sort_by {|subject| subject['updated_at'] }.reverse
+    end
 
 
 end
