@@ -4,22 +4,33 @@ class FeedsController < ApplicationController
 
     def index
 
-        # render json: @user.friends
-
-        subjects = []
+        reviews = []
         following = @user.friends
         following.each do |user|
-            user.subjects.each do |subject|
-                subjects.append(subject)
+            user.reviews.each do |review|
+                reviews.append(review)
             end
         end
+        
+        reviews = sorted(reviews)
+        
+        
+
+        render json: reviews
 
 
-        render json: subjects
 
     end
 
-    # private
+    private
+
+    def sorted(reviews)
+
+
+        reviews.sort_by {|review| review['updated_at'] }.reverse
+
+
+    end
 
 
     # def sort_subjects(subjects)
