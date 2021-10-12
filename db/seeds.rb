@@ -56,7 +56,7 @@ User.all.each do |user|
 
     end
 
-# end
+end
 
 # #Generate random friendships
 User.all.each do |user|
@@ -80,5 +80,13 @@ for n in 0..100
     subject = Subject.all.sample
 
     user.reviews.create(subject_id: subject.id, rating: rand(11), content: Faker::Quote.famous_last_words)
+
+end
+
+for n in 0..10 #follow ten random users.
+
+    user = User.first
+    user.friendships.create(friend_id: User.all.sample.id)
+
 
 end
