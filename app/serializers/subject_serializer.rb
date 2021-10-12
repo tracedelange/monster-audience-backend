@@ -1,7 +1,9 @@
 class SubjectSerializer < ActiveModel::Serializer
   attributes :id, :name, :user_id, :description, :city, :state, :public, :username, :avg_rating, :created_at, :updated_at
 
-  has_many :reviews
+  has_many :reviews do
+    object.reviews.order('created_at').reverse
+  end
 
   def username
     User.find(self.object.user_id).username

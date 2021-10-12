@@ -47,8 +47,8 @@ class ReviewsController < ApplicationController
     def destroy
         review = Review.find_by(id: params[:id])
         if review && review.user_id == @user.id
+            # review.subject.update(review_count: (review.subject.review_count - 1))
             review.destroy
-            newReview.subject.update(review_count: (newReview.subject.review_count + 1))
             head :no_content
         else
             render json: {error: "Permission denied."}, status: :unauthorized
