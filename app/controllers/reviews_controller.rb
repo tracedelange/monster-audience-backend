@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
     def create
         newReview = @user.reviews.create(review_params)
         if newReview.valid?
+            newReview.subject.update(review_count: (newReview.subject.review_count + 1))
             render json: newReview, status: :created
         else
             render json: {errors: newReview.errors}, status: :unprocessable_entity
@@ -47,6 +48,7 @@ class ReviewsController < ApplicationController
         review = Review.find_by(id: params[:id])
         if review && review.user_id == @user.id
             review.destroy
+            newReview.subject.update(review_count: (newReview.subject.review_count + 1))
             head :no_content
         else
             render json: {error: "Permission denied."}, status: :unauthorized

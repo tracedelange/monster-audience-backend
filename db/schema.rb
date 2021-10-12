@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_195729) do
+ActiveRecord::Schema.define(version: 2021_10_12_151811) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "review_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_195729) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "public", default: true
+    t.integer "review_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|
