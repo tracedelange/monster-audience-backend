@@ -25,53 +25,53 @@
 
 require 'faker'
 
-# for n in 0..100 #create one hundred random users with faker
+for n in 0..100 #create one hundred random users with faker
 
-#     User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.uuid)
-#     # puts Faker::Internet.username
-#     # puts Faker::Internet.email
-#     # puts Faker::Internet.uuid
-# end
+    User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.uuid)
+    # puts Faker::Internet.username
+    # puts Faker::Internet.email
+    # puts Faker::Internet.uuid
+end
 
 
 # #create 3 subjects per user.
-# User.all.each do |user|
+User.all.each do |user|
 
-#     for n in 0..2
-#         user.subjects.create(name: Faker::Coffee.blend_name, description: Faker::Lorem.sentence)
-#         # puts Faker::Coffee.blend_name #name
-#         # puts Faker::Lorem.sentence #description
-#     end
+    for n in 0..1
+        user.subjects.create(name: Faker::Coffee.blend_name, description: Faker::Lorem.sentence)
+        # puts Faker::Coffee.blend_name #name
+        # puts Faker::Lorem.sentence #description
+    end
 
-# end
+end
 
 # #each user leaves a review on two random subjects
-# User.all.each do |user|
+User.all.each do |user|
 
-#     for n in 0..2
-#         user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Lorem.sentence)
-#         # puts Subject.all.sample.id #Subject id
-#         # puts rand(11) #rating
-#         # puts Faker::Lorem.sentence #content
+    for n in 0..2
+        user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote)
+        # puts Subject.all.sample.id #Subject id
+        # puts rand(11) #rating
+        # puts Faker::Lorem.sentence #content
 
-#     end
+    end
 
 # end
 
 # #Generate random friendships
-# User.all.each do |user|
+User.all.each do |user|
 
-#     #follow between 10 to 20 random users.
-#     #Need to make sure you can't follow someone twice!
-#     range = rand(21)
+    #follow between 10 to 20 random users.
+    #Need to make sure you can't follow someone twice!
+    range = rand(21)
 
-#     for n in 0..range
+    for n in 0..range
 
-#         # User.all.sample.id #Friend Id
-#         user.friendships.create(friend_id: User.all.sample.id)
-#     end
+        # User.all.sample.id #Friend Id
+        user.friendships.create(friend_id: User.all.sample.id)
+    end
 
-# end
+end
 
 
 for n in 0..100
