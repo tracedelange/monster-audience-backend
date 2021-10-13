@@ -3,21 +3,58 @@ class FeedsController < ApplicationController
     before_action :set_current_user
 
     def index
-
-        # render json: @user.friends
-
-        subjects = []
-        following = @user.friends
-        following.each do |user|
-            user.subjects.each do |subject|
-                subjects.append(subject)
-            end
+        
+        #Updated method:
+        start = 0
+        page_size = 10
+        if params[:page]
+            start = 10 * params[:page].to_i
         end
-
-
-        render json: sorted(subjects)
-
+        puts start
+        render json: Subject.where(user_id: @user.friends.ids).order('updated_at').reverse()[start, 10]
     end
+
+        #Working but inefficient:
+
+        # subjects = []
+        # following = @user.friends
+        # following.each do |user|
+        #     user.subjects.each do |subject|
+        #         subjects.append(subject)
+        #     end
+        # end
+
+
+        # render json: sorted(subjects)
+
+        #Current Route:
+        #Create an empty array
+        #Create an array of users logged in user is following
+        #Iterate over following array
+        #iterate over each subject array for each user o(n^2)!!!!
+        #append each subject to empty array
+        #return empty array sorted by date-created-at.
+
+        #Alternate route:
+        #Access all subjects via Subjects.all
+        #Somehow filter Subjects to only those where id = an id contained in following list.
+        #Order by 'updated_at'
+        #Incorporate pagination how Enoch suggested.
+        #Let's Try!
+
+
+        #Timings:
+        #Original method calling and returning entire feed:
+        #Completed 200 OK in 737ms (Views: 532.2ms | ActiveRecord: 129.4ms | Allocations: 247746)
+
+        #Updated method calling and returning entire feed:
+        #Completed 200 OK in 655ms (Views: 528.7ms | ActiveRecord: 98.4ms | Allocations: 213566)
+
+        #Updated method calling and returning a page of 10
+        #Completed 200 OK in 208ms (Views: 124.0ms | ActiveRecord: 47.9ms | Allocations: 59958)
+        #Looks like this is clearly the most effecient method. Whoohoo!
+
+    
 
     # private
 
