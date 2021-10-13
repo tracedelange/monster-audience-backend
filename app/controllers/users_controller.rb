@@ -16,6 +16,11 @@ class UsersController < ApplicationController
         render json: {user: UserSerializer.new(current_user)}, status: :accepted
     end
 
+    def search
+        search_results = User.where("username like ?", "%#{params[:username]}%")
+        render json: search_results, status: :ok
+    end
+
     private
 
     def user_params
