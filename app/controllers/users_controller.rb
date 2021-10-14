@@ -17,12 +17,13 @@ class UsersController < ApplicationController
     end
 
     def search
+        set_current_user
         if params[:query] == nil
             render json: {error: "Blank search queries will not be accepted."}, status: :unprocessable_entity
         else
 
             search_results = User.where("username like ?", "%#{params[:query]}%")
-            render json: search_results, status: :ok
+            render json: search_results, current_user: @user, status: :ok
 
         end
     end

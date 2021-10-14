@@ -6,8 +6,13 @@ class FriendshipsController < ApplicationController
     end
 
     def create
+        
         newFriendShip = @user.friendships.create(friendship_params)
-        render json: newFriendShip, status: :created
+        if newFriendShip.valid?
+            render json: newFriendShip, status: :created
+        else
+            render json: {errors: newFriendShip.errors}, status: :unprocessable_entity
+        end
     end
 
     def destroy

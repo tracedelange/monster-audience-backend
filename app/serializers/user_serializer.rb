@@ -1,5 +1,25 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :avatar_link, :created_at, :social_counts
+  attributes :id, :username, :avatar_link, :created_at, :social_counts, :following, :follows
+
+
+
+  def follows
+    if @instance_options[:current_user]
+      @logged_user_id = @instance_options[:current_user].id
+      User.find(self.object.id).friends.ids.include? @logged_user_id
+    else
+      return "N/A"
+    end
+  end
+  
+  def following
+    if @instance_options[:current_user]
+      @logged_user = @instance_options[:current_user]
+      @logged_user.friends.ids.include? self.object.id
+    else
+      return "N/A"
+    end
+  end
 
 
   def social_counts
