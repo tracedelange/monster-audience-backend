@@ -10,8 +10,25 @@ class FeedsController < ApplicationController
         if params[:page]
             start = 10 * params[:page].to_i
         end
-        puts start
         render json: Subject.where(user_id: @user.friends.ids).order('updated_at').reverse()[start, 10]
+    end
+
+    def show
+        start = 0
+        page_size = 10
+        if params[:page]
+            start = 10 * params[:page].to_i
+        end
+        owned_subjects = Subject.where(user_id: params[:id]).order('updated_at').reverse()[start, 10]
+        reviewed_subjects = Review.where(user_id: params[:id]).order('updated_at').reverse()[start, 10]
+        user = User.find(params[:id])
+
+
+        render json: {
+            reviews: ActiveModel::Serializer::CollectionSerializer.new(reviewed_subjects, each_serializer: ReviewSerializer),
+            subjects: ActiveModel::Serializer::CollectionSerializer.new(owned_subjects, each_serializer: SubjectSerializer),
+            userDetails: UserSerializer.new(user, current_user: @user)
+            }, status: :ok
     end
 
         #Working but inefficient:

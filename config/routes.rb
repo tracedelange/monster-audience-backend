@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
 
   get '/feed', to: 'feeds#index'
+  get '/feed/:id', to: 'feeds#show'
+  
   get '/subjects/mine', to: 'subjects#mine'
   get '/reviews/mine', to: 'reviews#mine'
 
