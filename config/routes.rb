@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/me', to: 'users#me'
   get '/users/search', to: 'users#search'
-
-
-
+  
+  
+  
   get '/feed', to: 'feeds#index'
   get '/feed/:id', to: 'feeds#show'
   
   get '/subjects/mine', to: 'subjects#mine'
+  get '/subjects/search', to: 'subjects#search'
+  
   get '/reviews/mine', to: 'reviews#mine'
 
   resources :friendships, only: [:index, :create, :destroy]

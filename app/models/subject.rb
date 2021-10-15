@@ -3,5 +3,5 @@ class Subject < ApplicationRecord
 
     validates :name, presence: true
     validates :description, presence: true
-    validates :name, uniqueness: { case_sensitive: false, message: "Event already exists."}
+    validates :name, uniqueness: { case_sensitive: false, message: "Subject already exists."}
 end

@@ -62,6 +62,15 @@ class SubjectsController < ApplicationController
         end
     end 
 
+    def search
+        if params[:query] == nil
+            render json: {error: "Blank search queries will not be accepted."}, status: :unprocessable_entity
+        else
+            search_results = Subject.where("name LIKE ? OR description LIKE ? OR city LIKE ?", "%#{params[:query]}%","%#{params[:query]}%","%#{params[:query]}%")
+            render json: search_results, status: :ok
+        end
+    end
+
 
     private
 
