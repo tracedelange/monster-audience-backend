@@ -71,8 +71,34 @@ class SubjectsController < ApplicationController
         end
     end
 
+    def recent
+        set_page
+        subjects = Subject.order(updated_at: :asc)[@start, 10]
+        render json: subjects, status: :ok
+    end
+    
+    def popular
+        set_page
+        subjects = Subject.joins(:reviews).group('subjects.id').order('avg(reviews.rating) DESC')[@start, 10]
+        render json: subjects
+    end
+    
+    def unpopular
+        set_page
+        subjects = Subject.joins(:reviews).group('subjects.id').order('avg(reviews.rating) ASC')[@start, 10]
+        render json: subjects
+    end
+    
 
     private
+
+    def set_page
+        start = 0
+        if params[:page]
+            start = 10 * params[:page].to_i
+        end
+        @start = start
+    end
 
     def subject_params
         params.permit(:name, :description, :city, :state, :id, :public)
@@ -87,3 +113,9 @@ end
 # PATCH  /subjects/:id(.:format)                                                                           subjects#update
 # PUT    /subjects/:id(.:format)                                                                           subjects#update
 # DELETE /subjects/:id(.:format)                                                                           subjects#destroy
+
+
+# get '/subjects/recent', to: 'subjects#recent'
+# get '/subjects/popular', to: 'subjects#popular'
+# get '/subjects/controversial', to: 'subjects#controversial'
+# get '/subjects/unpopular', to: 'subjects#unpopular'

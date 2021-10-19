@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   
   get '/subjects/mine', to: 'subjects#mine'
   get '/subjects/search', to: 'subjects#search'
+
+  #subject query routes:
+  get '/subjects/recent', to: 'subjects#recent'
+  get '/subjects/popular', to: 'subjects#popular'
+  get '/subjects/unpopular', to: 'subjects#unpopular'
   
   get '/reviews/mine', to: 'reviews#mine'
 
