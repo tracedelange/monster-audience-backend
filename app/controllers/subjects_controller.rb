@@ -73,7 +73,7 @@ class SubjectsController < ApplicationController
 
     def recent
         set_page
-        subjects = Subject.order(updated_at: :asc)[@start, 10]
+        subjects = Subject.order(updated_at: :desc)[@start, 10]
         render json: subjects, status: :ok
     end
     
