@@ -23,12 +23,34 @@ class FeedsController < ApplicationController
         reviewed_subjects = Review.where(user_id: params[:id]).order('updated_at').reverse()[start, 10]
         user = User.find(params[:id])
 
+        if reviewed_subjects && owned_subjects
+            render json: {
+                reviews: ActiveModel::Serializer::CollectionSerializer.new(reviewed_subjects, each_serializer: ReviewSerializer),
+                subjects: ActiveModel::Serializer::CollectionSerializer.new(owned_subjects, each_serializer: SubjectSerializer),
+                userDetails: UserSerializer.new(user, current_user: @user)
+                }, status: :ok
+        elsif reviewed_subjects
+            render json: {
+                reviews: ActiveModel::Serializer::CollectionSerializer.new(reviewed_subjects, each_serializer: ReviewSerializer),
+                subjects: [],
+                userDetails: UserSerializer.new(user, current_user: @user)
+                }, status: :ok
+        elsif owned_subjects
+            render json: {
+                reviews: [],
+                subjects: ActiveModel::Serializer::CollectionSerializer.new(owned_subjects, each_serializer: SubjectSerializer),
+                userDetails: UserSerializer.new(user, current_user: @user)
+                }, status: :ok
+        else
+            render json: {
+                reviews: [],
+                subjects: [],
+                userDetails: UserSerializer.new(user, current_user: @user)
+                }, status: :ok
+        end
 
-        render json: {
-            reviews: ActiveModel::Serializer::CollectionSerializer.new(reviewed_subjects, each_serializer: ReviewSerializer),
-            subjects: ActiveModel::Serializer::CollectionSerializer.new(owned_subjects, each_serializer: SubjectSerializer),
-            userDetails: UserSerializer.new(user, current_user: @user)
-            }, status: :ok
+
+
     end
 
         #Working but inefficient:
