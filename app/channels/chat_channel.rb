@@ -1,9 +1,11 @@
 class ChatChannel < ApplicationCable::Channel
     def subscribed
-      stream_from 'chat_channel'
+      stream_from 'ChatChannel'
     end
   
-    def unsubscribed; end
+    def unsubscribed
+      puts 'unsubscribing'
+    end
   
     def create(opts)
       ChatMessage.create(

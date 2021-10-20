@@ -1,13 +1,12 @@
-class ChatMessageCreationEventBroadcastJob 
-    < ApplicationJob
-      queue_as :default
+class ChatMessageCreationEventBroadcastJob < ApplicationJob
+
+  queue_as :default
     
-      def perform(chat_message)
-        ActionCable
-          .server
-          .broadcast('chat_channel',
-                     id: chat_message.id,
-                     created_at: chat_message.created_at.strftime('%H:%M'),
-                     content: chat_message.content)
-      end
+    def perform(chat_message)
+
+        # ChatChannel.broadcast_to('chat_message:1', chat_message)
+
+      ActionCable.server.broadcast('chat_channel', chat_message)
+
     end
+end
