@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#me'
   get '/users/search', to: 'users#search'
   
-  
+  mount ActionCable.server => '/cable'
   
   get '/feed', to: 'feeds#index'
   get '/feed/:id', to: 'feeds#show'
