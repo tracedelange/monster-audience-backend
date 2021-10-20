@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/me', to: 'users#me'
   get '/users/search', to: 'users#search'
   
+  resources :conversations, only: [:index, :create]
+  resources :messages, only: [:create]
+  mount ActionCable.server => '/cable'
   
   
   get '/feed', to: 'feeds#index'
