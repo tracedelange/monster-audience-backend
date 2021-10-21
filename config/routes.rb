@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/feed', to: 'feeds#index'
   get '/feed/:id', to: 'feeds#show'
   
+  resources :conversations, only: [:index, :create, :destroy, :show]
+
   get '/subjects/mine', to: 'subjects#mine'
   get '/subjects/search', to: 'subjects#search'
 
