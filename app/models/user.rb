@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_many :friendships
     has_many :friends, through: :friendships
 
+    has_many :chat_messages
     has_many :conversations
 
     validates :username, presence: true

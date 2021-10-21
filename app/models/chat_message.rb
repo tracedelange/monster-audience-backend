@@ -2,10 +2,11 @@ class ChatMessage < ApplicationRecord
 
 
     belongs_to :conversation
+    belongs_to :author, :class_name => "User"
 
     after_create_commit do
-        # ChatMessageCreationEventBroadcastJob.perform_later(self.to_json)
-        puts self
-        ChatMessageCreationEventBroadcastJob.perform_later({chat_messages: Conversation.find(self.conversation_id).chat_messages}.to_json, self.conversation_id)
+        messages = Conversation.find(self.conversation_id).chat_messages
+        ChatMessageCreationEventBroadcastJob.perform_later({chat_messages: ActiveModel::Serializer::CollectionSerializer.new(messages, each_serializer: ChatMessageSerializer)}.to_json, self.conversation_id)
     end
+    # subjects: ActiveModel::Serializer::CollectionSerializer.new(owned_subjects, each_serializer: SubjectSerializer)
 end
