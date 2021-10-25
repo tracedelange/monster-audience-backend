@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_151811) do
+ActiveRecord::Schema.define(version: 2021_10_25_210050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "conversation_id"
+    t.integer "author_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "review_id"
@@ -21,6 +29,14 @@ ActiveRecord::Schema.define(version: 2021_10_12_151811) do
     t.integer "likes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "message_count", default: 0
   end
 
   create_table "friendships", force: :cascade do |t|
