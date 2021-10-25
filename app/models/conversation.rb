@@ -4,5 +4,5 @@ class Conversation < ApplicationRecord
 
     has_many :chat_messages
 
-    validates :recipient_id, presence: true
+    validates :recipient_id, presence: true 
 end
