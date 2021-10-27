@@ -33,32 +33,58 @@ for n in 0..100 #create one hundred random users with faker
     # puts Faker::Internet.uuid
 end
 
-
-# #create 3 subjects per user.
+# # #create between 1 to 3 subjects per user.
 User.all.each do |user|
-
-    for n in 0..1
-        user.subjects.create(name: Faker::Coffee.blend_name, description: Faker::Lorem.sentence)
-        # puts Faker::Coffee.blend_name #name
-        # puts Faker::Lorem.sentence #description
+    for n in 0...rand(4)
+        choice = rand(8)
+        
+        if choice == 0
+            #beer
+            user.subjects.create(name: Faker::Beer.name, description: Faker::Beer.style )
+        elsif choice == 1
+            #book
+            user.subjects.create(name: Faker::Book.title, description: Faker::Book.genre )
+        elsif choice == 2
+            #movie
+            user.subjects.create(name: Faker::Movie.title, description: Faker::Movie.quote )
+        elsif choice == 3
+            #hobby
+            user.subjects.create(name: Faker::Hobby.activity, description: "Bascially art" )
+        elsif choice == 4
+            #job
+            user.subjects.create(name: ('Working as a ' + Faker::Job.title), description: Faker::Job.employment_type )
+        elsif choice == 5
+            #restaurant
+            user.subjects.create(name: Faker::Restaurant.name, description: Faker::Restaurant.type )
+        elsif choice == 6
+            #vehicle
+            user.subjects.create(name: Faker::Vehicle.make_and_model, description: Faker::Vehicle.car_type )
+        elsif choice == 7
+            #game
+            user.subjects.create(name: Faker::Vehicle.make_and_model, description: Faker::Vehicle.car_type )
+        elsif choice == 8
+            #music
+            user.subjects.create(name: Faker::Music.album, description: Faker::Music.genre )
+        end
     end
-
 end
 
-# #each user leaves a review on two random subjects
+# # #each user leaves a review on two random subjects
 User.all.each do |user|
-
     for n in 0..2
-        user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote)
-        # puts Subject.all.sample.id #Subject id
-        # puts rand(11) #rating
-        # puts Faker::Lorem.sentence #content
+        quote = rand(3)
 
+        if quote == 0
+            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote)
+        elsif quote == 1
+            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.famous_last_words)
+        elsif quote == 2
+            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.most_interesting_man_in_the_world)
+        end
     end
-
 end
 
-# #Generate random friendships
+# # #Generate random friendships
 User.all.each do |user|
 
     #follow between 10 to 20 random users.
@@ -74,19 +100,19 @@ User.all.each do |user|
 end
 
 
-for n in 0..100
+# for n in 0..100
 
-    user = User.all.sample
-    subject = Subject.all.sample
+#     user = User.all.sample
+#     subject = Subject.all.sample
 
-    user.reviews.create(subject_id: subject.id, rating: rand(11), content: Faker::Quote.famous_last_words)
+#     user.reviews.create(subject_id: subject.id, rating: rand(11), content: Faker::Quote.famous_last_words)
 
-end
+# end
 
-for n in 0..10 #follow ten random users.
+# for n in 0..10 #follow ten random users.
 
-    user = User.first
-    user.friendships.create(friend_id: User.all.sample.id)
+#     user = User.first
+#     user.friendships.create(friend_id: User.all.sample.id)
 
 
-end
+# end
