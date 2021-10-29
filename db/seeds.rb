@@ -10,13 +10,13 @@
 
 require 'faker'
 
-for n in 0..100 #create one hundred random users with faker
+# for n in 0..100 #create one hundred random users with faker
 
-    User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.uuid)
-    # puts Faker::Internet.username
-    # puts Faker::Internet.email
-    # puts Faker::Internet.uuid
-end
+#     User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.uuid)
+#     # puts Faker::Internet.username
+#     # puts Faker::Internet.email
+#     # puts Faker::Internet.uuid
+# end
 
 # # #create between 1 to 3 subjects per user.
 # User.all.each do |user|
@@ -55,18 +55,18 @@ end
 # end
 
 # # #each user leaves a review on two random subjects
-User.all.each do |user|
-    for n in 0..2
-        quote = rand(3)
-        if quote == 0
-            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote)
-        elsif quote == 1
-            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.famous_last_words)
-        elsif quote == 2
-            user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.most_interesting_man_in_the_world)
-        end
-    end
-end
+# User.all.each do |user|
+#     for n in 0..2
+#         quote = rand(3)
+#         if quote == 0
+#             user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Movies::HitchhikersGuideToTheGalaxy.quote)
+#         elsif quote == 1
+#             user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.famous_last_words)
+#         elsif quote == 2
+#             user.reviews.create(subject_id: Subject.all.sample.id, rating: rand(11), content: Faker::Quote.most_interesting_man_in_the_world)
+#         end
+#     end
+# end
 
 # # #Generate random friendships
 User.all.each do |user|
