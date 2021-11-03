@@ -23,13 +23,3 @@ You can register an account for Monster Audience <a href='https://monster-audien
 ## Contact
 
 If you have any questions about this project or would like more information on the development process behind this project, you can visit my <a href='www.delangedev.com'>personal web site</a> or <a href='mailto:tracedelange@me.com'> send me an email.</a>
-
-
-<!-- ## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46) -->
